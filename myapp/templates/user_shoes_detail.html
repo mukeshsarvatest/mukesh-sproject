@@ -1,0 +1,48 @@
+{% extends 'header.html' %}
+{% load static %} 
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+    <div class="row">
+    
+    <div id="box" class="col-sm-3" style="margin-top: 10px;">
+    <div class="layout_padding collection_section">
+      <div class="container">
+        <div class="card" style="width:250px">
+          <tr>
+            <td colspan="2" align="center">
+              <img class="card-img-top" src="{{shoes.shoes_image.url}}" alt="Card image" width=450px height=450px>
+            </td>
+          </tr>
+          <div class="card-body">
+            <p class="card-title">Shoes Category : {{shoes.shoes_category}}</p>
+            <p class="card-title">Shoes Name : {{shoes.shoes_name}}</p>
+            <p class="card-text">Shoes Price : {{shoes.shoes_price}}</p>
+            <p class="card-text">Shoes Quantity : {{shoes.shoes_quantity}}</p>
+            
+            {% if flag1 == True %}
+            <a href="{% url 'remove_from_cart' pk=shoes.pk %}" style="font-size: 15px;"><button type="submit" class="main_bt">Remove From Cart</a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% else %}
+            <a href="{% url 'add_to_cart' pk=shoes.pk %}" style="font-size: 15px;"><button type="submit" class="main_bt">Add To Cart</a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif %}
+            
+            {% if flag == True %}
+                <a href="{% url 'remove_from_wishlist' pk=shoes.pk %}" style="font-size: 15px;"><button type="submit" class="main_bt">Remove From Wishlist</a></button>
+
+            {% else %}
+                <a href="{% url 'add_to_wishlist' pk=shoes.pk %}" style="font-size: 15px;"><button type="submit" class="main_bt">Add To Wishlist</a></button>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  </body>
+  </html>
+{% endblock %}

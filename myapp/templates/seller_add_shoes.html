@@ -1,0 +1,74 @@
+{% extends 'seller_header.html' %}
+{% load static %} 
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+	
+   	<!-- contact section start -->
+    
+    <div class="layout_padding contact_section">
+    	<div class="container">
+    		<h1 class="new_text"><strong>Add Shoes</strong></h1>
+    	</div>
+    	<div class="container-fluid ram">
+    		<div class="row">
+    			<div class="col-md-6">
+    				<div class="email_box">
+                    <div class="input_main">
+                       <div class="container">
+                        {% if msg %}
+                            <b><p style="color:red;">{{msg}}</p></b>
+                        {% endif %}
+                          <form class="form-group" method="post" action="{% url 'seller_add_shoes' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                
+                                <div class="form-group">
+                                  <h1><strong>Shoes Category</strong></h1>
+                                        <select name="shoes_category" class="form-control">
+                                          
+                                            <option value="sports">Sports Shoes</option>
+                                            <option value="snikers shoes">Snikers Shoes</option>
+                                            <option value="causal shoes">Casual Shoes</option>
+                                            <option value="formal shoes">Formal Shoes</option>
+                                        </select>
+                                </div>
+                    
+                            
+                            <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Shoes Name" name="shoes_name">
+                            </div>
+                            <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Shoes Price" name="shoes_price">
+                            </div>
+                            <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Shoes Quantity" name="shoes_quantity">
+                            </div>
+                            <div class="form-group">
+                              <input type="file" class="form-control" placeholder="Shoes Image" name="shoes_image">
+                            </div>
+                            
+                            <div class="send_btn">
+                              <button type="submit" class="main_bt">Add Shoes</button>
+                            </div> 
+                        
+                    
+                       
+                    </form> 
+                    </div> 
+                 </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+                    
+   	<!-- contact section end -->
+	
+   </body>
+</html>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends 'header.html' %}
+{% load static %} 
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+	
+   	<!-- contact section start -->
+    
+    <div class="layout_padding contact_section">
+    	<div class="container">
+    		<h1 class="new_text"><strong>Sign Up</strong></h1>
+    	</div>
+    	<div class="container-fluid ram">
+    		<div class="row">
+    			<div class="col-md-6">
+    				<div class="email_box">
+                    <div class="input_main">
+                       <div class="container">
+                        <span id="error_msg"></span>
+                        {% if msg %}
+                            <b><p style="color:red;">{{msg}}</p></b>
+                        {% endif %}
+                          <form class="form-group" method="post" action="{% url 'signup' %}">
+                            {% csrf_token %}
+                            <div class="container">
+                              <h1 class="new_text"><strong>User Type</strong></h1>
+                            </div>
+                            <div class="form-group">
+                              <input type="radio" class="form-control" name="usertype" value="user">User
+                            
+                              <input type="radio" class="form-control" name="usertype" value="seller">Seller
+                            </div>
+                            <div class="form-group">
+                              <input type="text" class="form-control" placeholder="First Name" name="fname">
+                            </div>
+                            <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Last Name" name="lname">
+                            </div>
+                            <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Mobile" name="mobile">
+                            </div>
+                            <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Email" name="email" id="email">
+                            </div>
+                            <div class="form-group">
+                               <textarea class="textarea" align="center"  placeholder="Address" rows="5" id="comment" name="address"></textarea>
+                            </div>
+                            <div class="form-group">
+                              <input type="password" class="form-control" placeholder="Password" name="password">
+                            </div>
+                            <div class="form-group">
+                              <input type="password" class="form-control" placeholder="Confirm Password" name="cpassword">
+                            </div>
+                           
+                            <div class="send_btn">
+                              <button type="submit" class="main_bt">Signup</button>
+                            </div> 
+                        <tr>
+                            <td colspan="2" align="center">
+                                Already Signup?<a href="{% url 'login' %}"><b><p style="color:red;">Click Here</p></b></a>To Login
+                            </td>
+                        </tr>
+                    
+                       
+                    </form> 
+                    </div> 
+                 </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<script>
+  $("#email").change(function(){
+    alert("Hello");
+    var email=$(this).val();
+    alert(email);
+    $.ajax({
+        url: '/ajax/validate_email_signup/',
+        data: {'email': email},
+        dataType: 'json',
+        success: function (data) {
+          if (data.is_taken) {
+            alert("1");
+            $('#error_msg').addClass('fa fa-close').css('color', 'white');
+          }
+          else{
+            alrt("2");
+            $('#error_msg').addClass('fa fa-check').css('color', 'green');
+          }
+        }
+      });
+  });
+</script>
+                
+   	<!-- contact section end -->
+	
+   </body>
+</html>
+{% endblock %}

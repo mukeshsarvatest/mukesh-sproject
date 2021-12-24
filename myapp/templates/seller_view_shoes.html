@@ -1,0 +1,31 @@
+{% extends 'seller_header.html' %}
+{% load static %} 
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+    <div class="row">
+    {% for i in shoes %}
+    <div id="box" class="col-sm-3" style="margin-top: 50px;">
+    <div class="layout_padding collection_section">
+      <div class="container">
+        <div class="card" style="width:250px">
+          <img class="card-img-top" src="{{i.shoes_image.url}}" alt="Card image" style= "width:250px;height: 250px">
+          <div class="card-body">
+            <p class="card-title">Shoes Name : {{i.shoes_name}}</p>
+            <p class="card-text">Shoes Price : {{i.shoes_price}}</p>
+            <a href="{% url 'seller_shoes_detail' pk=i.pk %}"><button type="submit" class="main_bt">More Details</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    {% endfor %}
+  </div>
+  </body>
+  </html>
+{% endblock %}

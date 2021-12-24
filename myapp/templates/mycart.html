@@ -1,0 +1,53 @@
+{% extends 'header.html' %}
+{% load static %} 
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+    <div class="row">
+      {% if carts %}
+      <div class="send_btn">
+        <center><h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total Shoes In Cart : {{carts.count}}</h1></center>
+        <form class="form-group" method="post" action="{% url 'pay' %}">
+          {% csrf_token %}
+          <input type="hidden" class="form-control" placeholder="Amount" name="amount" value="{{net_price}}"> 
+            <h1> Net Price To Pay: {{net_price}}&nbsp;&nbsp;&nbsp;<button type="submit" class="main_bt" value="Checkout">Checkout</button> 
+        </form>
+      </div>     
+      {% else %}
+        <center><h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No Shoes In Cart</h1></center>
+      {% endif %}
+      </div>
+    </div>
+
+    <div class="row">
+    {% for i in carts %}
+    <div id="box" class="col-sm-3" style="margin-top: 50px;">
+    <div class="layout_padding collection_section">
+      <div class="container">
+        <div class="card" style="width:250px">
+          <img class="card-img-top" src="{{i.shoes.shoes_image.url}}" alt="Card image" width=250px height=250px>
+          <div class="card-body">
+            <p class="card-title">Shoes Name : {{i.shoes.shoes_name}}</p>
+            <form class="form-group" method="post" action="{% url 'change_qty' pk=i.pk %}">
+              {% csrf_token %}
+                  <p class="card-text">Shoes Quantity :
+                  <input type="number" name="qty" value="{{i.qty}}" min="1"  max="9" onchange="this.form.submit();"></p>
+            </form>
+            <p class="card-text">Shoes Price : {{i.price}}</p>
+            <p class="card-text">Total Price : {{i.total_price}}</p>
+            <a href="{% url 'user_shoes_detail' pk=i.shoes.pk %}"><button type="submit" class="main_bt">More Details</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    {% endfor %}
+  </div>
+  </body>
+  </html>
+{% endblock %}

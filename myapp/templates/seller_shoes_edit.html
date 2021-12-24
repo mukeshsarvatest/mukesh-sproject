@@ -1,0 +1,74 @@
+{% extends 'seller_header.html' %}
+{% load static %} 
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+	
+   	<!-- contact section start -->
+    
+    <div class="layout_padding contact_section">
+    	<div class="container">
+    		<h1 class="new_text"><strong>Edit Shoes</strong></h1>
+    	</div>
+    	<div class="container-fluid ram">
+    		<div class="row">
+    			<div class="col-md-6">
+    				<div class="email_box">
+                    <div class="input_main">
+                       <div class="container">
+                        {% if msg %}
+                            <b><p style="color:red;">{{msg}}</p></b>
+                        {% endif %}
+                          <form class="form-group" method="post" action="{% url 'seller_shoes_edit' pk=shoes.pk %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                
+                            <div class="form-group">
+                              <h1><strong>Shoes Category</strong></h1>
+                                <div class="form-group">
+                                  <input type="text" class="form-control" name="shoes_category" value="{{shoes.shoes_category}}" readonly="readonly">
+                                </div>   
+                            </div>
+                          
+                            
+                            <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Shoes Name" name="shoes_name" value="{{shoes.shoes_name}}">
+                            </div>
+                            <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Shoes Price" name="shoes_price" value="{{shoes.shoes_price}}">
+                            </div>
+                            <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Shoes Quantity" name="shoes_quantity" value="{{shoes.shoes_quantity}}">
+                            </div>
+                            <div class="form-group">
+                                <img src="{{shoes.shoes_image.url}}" height="100px" width="100px">
+                            </div>
+                            
+                            <div class="form-group">
+                              <input type="file" class="form-control" placeholder="Shoes Image" name="shoes_image">
+                            </div>
+                            
+                            <div class="send_btn">
+                              <a href="" style="font-size: 20px;"><button type="submit" class="main_bt">Update Shoes</a></button>
+                            </div> 
+                        
+                    
+                       
+                    </form> 
+                    </div> 
+                 </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+                    
+   	<!-- contact section end -->
+	
+   </body>
+</html>
+{% endblock %}

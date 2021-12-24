@@ -1,0 +1,64 @@
+{% extends 'seller_header.html' %}
+{% load static %} 
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+	
+   	<!-- contact section start -->
+    
+    <div class="layout_padding contact_section">
+    	<div class="container">
+    		<h1 class="new_text"><strong>Edit Profile</strong></h1>
+    	</div>
+    	<div class="container-fluid ram">
+    		<div class="row">
+    			<div class="col-md-6">
+    				<div class="email_box">
+                    <div class="input_main">
+                       <div class="container">
+                        {% if msg %}
+                            <b><p style="color:red;">{{msg}}</p></b>
+                        {% endif %}
+                          <form class="form-group" method="post" action="{% url 'profile' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                              <input type="text" class="form-control" placeholder="First Name" name="fname" value="{{user.fname}}">
+                            </div>
+                            <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Last Name" name="lname" value="{{user.lname}}">
+                            </div>
+                            <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Mobile" name="mobile" value="{{user.mobile}}">
+                            </div>
+                            <div class="form-group">
+                               <textarea class="textarea" align="center"  placeholder="Address" rows="5" id="comment" name="address">{{user.address}}</textarea>
+                            </div>
+
+                            <div class="send_btn">
+                              <h3>
+                                <a href="{% url 'seller_change_password' %}" style="font-size: 18px;"><button type="submit" class="main_bt">Change Password</a></button> 
+                              </h3> 
+                              <h1>
+                                <button type="submit" class="main_bt" style="font-size: 20px;">Update Profile</button>
+                              </h1>
+                            </div> 
+                        
+                    </form> 
+                    </div> 
+                 </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+                    
+   	<!-- contact section end -->
+	
+   </body>
+</html>
+{% endblock %}
